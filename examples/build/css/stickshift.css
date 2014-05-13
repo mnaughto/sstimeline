@@ -1,0 +1,176 @@
+/* #define SS_ICON_SIZE 34
+#define SS_DEBUG NO
+#define SS_RESET_DELAY 1.0
+#define SS_ACTION_DELAY 0.1
+#define SS_COLUMN_POSITION 0.5
+#define SS_BAR_CORNER_RADIUS 17
+#define SS_BAR_GAP 10
+#define SS_ACTUAL_BAR_HEIGHT 34
+#define SS_BAR_HEIGHT 34
+#define SS_ACTUAL_COLUMN_WIDTH 90
+#define SS_COLUMN_WIDTH 30
+#define SS_ACTIVATION_WIDTH(width) width * 0.4
+#define SS_CENTER_HEIGHT(height) height * 0.3
+#define SS_PAGE_HEIGHT(height) height * 0.3
+#define SS_BOTTOM_EXTENSION 0
+#define SS_TOP_EXTENSION 0
+*/
+
+/* {
+border: 2px dashed blue;
+}*/
+#screen {
+    height:568px;
+    width:320px;
+    top: 100px;
+    position: absolute;
+    z-index:0;
+    display:none;
+}
+#stickshift{
+	position: absolute;
+	width: 320px;
+	/*top: 165px*/
+	height: 403px;
+}
+#left{
+    float: left;
+    width: 145px;
+    z-index: 3;
+}
+#right{
+    float: right;
+    width: 145px;
+    z-index: 3;
+    text-align: right;
+}
+.row {
+    height: 35px;
+    background: gray;
+    margin: 10px 0px 10px 0px;
+    z-index: 3;
+}
+
+#vLine {
+	clear: none;
+    margin-top: 10px;
+    margin-left: -15px;
+    position:absolute;
+    left: 50%;
+    width: 30px;
+    height: 386px;
+    background: gray;
+    z-index: 3;
+    display:none;
+}
+#dot {
+
+    width:325px;
+    height:40px;
+    /*left: 50%;
+    top: 250px;
+    position:relative;*/
+    position: absolute;
+    top: 0px;
+    left: 0px;
+    margin-top: -15px;
+    margin-left: -162.5px;
+    background: rgba(0,0,255,0.9);
+    z-index: -1;
+    /*border-radius: 10%;*/
+}
+#qr{
+	position:fixed;
+	left:50%;
+	top:50%;
+	padding:10px;
+	background-color:white;
+	z-index:2000;
+}
+.display {
+    width: 320px;
+    height: 165px;
+    overflow: auto;
+    border: 2pt solid black;
+    display: none;
+}
+
+#extdisp {
+    float: right;
+    color: black;
+}
+
+#prezi-player {
+	width: 100%;
+	height: 100%;
+	z-index:-1;
+}
+#blank{
+position: fixed;
+	width: 320px;
+	height: 403px;
+bottom:2%;
+right:2%;
+opacity:0.9;
+z-index:2000;
+}
+
+/*------------------------------------*\
+	NAV
+\*------------------------------------*/
+#nav{
+	list-style:none;
+	font-weight:bold;
+	margin-bottom:10px;
+	/* Clear floats */
+	float:left;
+	width:100%;
+	position:relative;
+	z-index:50;
+}
+#nav li{
+	float:left;
+	margin-right:10px;
+	position:relative;
+}
+#nav a{
+	display:block;
+	padding:5px;
+	color:#fff;
+	background:#333;
+	text-decoration:none;
+}
+#nav a:hover{
+	color:#fff;
+	background:#6b0c36;
+	text-decoration:underline;
+}
+
+/*--- DROPDOWN ---*/
+#nav ul{
+	background:#fff; /* Adding a background makes the dropdown work properly in IE7+. Make this as close to your page's background as possible (i.e. white page == white background). */
+	background:rgba(255,255,255,0); /* But! Let's make the background fully transparent where we can, we don't actually want to see it if we can help it... */
+	list-style:none;
+	position:absolute;
+	left:-9999px; /* Hide off-screen when not needed (this is more accessible than display:none;) */
+}
+#nav ul li{
+	padding-top:1px; /* Introducing a padding between the li and the a give the illusion spaced items */
+	float:none;
+}
+#nav ul a{
+	white-space:nowrap; /* Stop text wrapping and creating multi-line dropdown items */
+}
+#nav li:hover ul{ /* Display the dropdown on hover */
+	left:0; /* Bring back on-screen when needed */
+}
+#nav li:hover a{ /* These create persistent hover states, meaning the top-most link stays 'hovered' even when your cursor has moved down the list. */
+	background:#6b0c36;
+	text-decoration:underline;
+}
+#nav li:hover ul a{ /* The persistent hover state does however create a global style for links even before they're hovered. Here we undo these effects. */
+	text-decoration:none;
+}
+#nav li:hover ul li a:hover{ /* Here we define the most explicit hover states--what happens when you hover each individual link. */
+	background:#333;
+}
