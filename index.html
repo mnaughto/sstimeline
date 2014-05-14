@@ -85,8 +85,22 @@
         
           if(extraArgs.val){
             console.log('Action: '+extraArgs.val.action+' url: '+extraArgs.val.url);
+            i = 0;
             switch (extraArgs.val.action)
             {
+            case "nextItemN":
+            
+              while (i< extraArgs.val.n){
+              	ss$(".nav-next").trigger('click');
+              	i++;
+              }
+            break;
+            case "previousItemn":
+              while (i< extraArgs.val.n){
+              ss$(".nav-prev").trigger('click');
+            i++;
+				}
+            break;
             case "nextItem":
               console.log("Next Item");
               ss$(".nav-next").trigger('click');
