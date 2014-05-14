@@ -1,0 +1,77 @@
+<!doctype html>
+<html>
+  <head>
+      <meta charset="utf-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1">
+    <link href="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/css/bootstrap.min.css" rel="stylesheet">
+  </head>
+  <style>
+ 	.form-control-static {margin-top: 10px; text-color:gray}
+  </style>
+  <body>
+      <script src='https://cdn.firebase.com/js/client/1.0.15/firebase.js'></script>
+    <script src='https://ajax.googleapis.com/ajax/libs/jquery/1.9.0/jquery.min.js'></script>
+    <script src="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/jquery-ui.min.js"></script>
+    <link rel="stylesheet" href="https://ajax.googleapis.com/ajax/libs/jqueryui/1.10.4/themes/smoothness/jquery-ui.css" />
+    <div class='container'>
+    <div class='jumbotron'>
+    <h1>Enter your business history here!</h1>
+    <p class='lead'>Iowa's entrepreneurial history is YOUR business's history. Enter it here to be immediately included in the timeline!</p>
+    </div>
+<div class='row'>
+<div class='col-md-4'>
+    <input type='text' class='form-control' id='headlineInput' placeholder='Headline'>
+    <input type='text' class='form-control datePicker' id='startDate' placeholder='Start Date'>
+    <p class='form-control-static'>Optional</p>
+    <textarea class='form-control' rows"5" id='textInput' placeholder='Description'></textarea>
+    <input type='text' class='form-control datePicker' id='endDate' placeholder='End Date'>
+    <input type='text' class='form-control' id='media' placeholder='Media URL (video or image)'>
+    <input type='text' class='form-control' id='caption' placeholder='Media Caption'>
+    <input type='text' class='form-control' id='credit' placeholder='Media Credit'>
+    
+
+    <button class='form-control btn btn-primary btn-block' id='enter' value='enter'>Enter</button>
+    </div>
+    <div class='col-md-8'>
+    <img src="http://entrefest.com/wp-content/uploads/2014/01/Entrefest-large-e1392094533141.png"><br>
+    powered by <img src="http://usestickshift.com/Text%20Logo.png" width=250px"> <img src="http://usestickshift.com/StickShift_Logo.png" width=50px">
+    </div>
+    </div>
+    </div>
+    <script>
+    	
+
+
+    var	numChildren
+      var myDataRef = new Firebase('https://sstimeline.firebaseio.com/test/timeline/date');
+      myDataRef.on('value', function(dataSnapshot) {
+ 		numChildren = dataSnapshot.numChildren();
+});
+	$( ".datePicker" ).datepicker({dateformat:'yy,d,m'});
+      $('#enter').click(function () {
+          var text = $('#textInput').val();
+          var headline = $('#headlineInput').val();
+          var startDate = $('#startDate').val();
+          var endDate = $('#endDate').val();
+          var caption = $('#caption').val();
+          var credit = $('#credit').val();
+          var media = $('#media').val();
+          myDataRef.child(numChildren).set({text: text, headline: headline, startDate: startDate, endDate: endDate, asset:{caption:caption, credit:credit, media:media}});
+          $('#textInput').val('');
+          $('#headlineInput').val('');
+          $('#startDate').val('');
+          $('#endDate').val('');
+          $('#caption').val('');
+          $('#credit').val('');
+          $('#media').val('');
+      });
+      function displayChatMessage(name, text) {
+        $('<div/>').text(text).prepend($('<em/>').text(name+': ')).appendTo($('#messagesDiv'));
+        $('#messagesDiv')[0].scrollTop = $('#messagesDiv')[0].scrollHeight;
+      };
+    </script>
+        <script src="https://netdna.bootstrapcdn.com/bootstrap/3.1.1/js/bootstrap.min.js"></script>
+	
+  </body>
+</html>
