@@ -119,36 +119,10 @@
           createStoryJS(function(){}, timeline_config);
         }
         //var timelineDeferred = new ss$.Deferred();
-        var dataFb = new Firebase('https://sstimeline.firebaseio.com/entry');
+        var dataFb = new Firebase('https://sstimeline.firebaseio.com/test');
         dataFb.on('value', function(snapshot){
           var snapData = snapshot.val();
-          var timelineData = {
-            headline: 'Iowa Startup Timeline',
-            type: 'default',
-            text: 'A Chronology of Notable Events in the Iowa Startup Scene',
-            date: []
-          };
-          var startDate = null;
-          _.each(snapData, function(entry){
-            var event = {};
-            var saneData = {
-              location: entry.wheredidthiseventtakeplace.value,
-              category: entry.whattypeofentitywaseffectedbythisevent.value,
-              entity: entry.whatentity.value,
-              description: entry.describetheevent.value,
-              date: new Date(entry.whatdatedidtheeventoccur.value)
-            };
-            if(!startDate || startDate > saneData.date){
-              startDate = saneData.date;
-            }
-            event.startDate = saneData.date.getFullYear() + ',' + saneData.date.getMonth() + ',' + saneData.date.getDay();
-            event.endDate = event.startDate;
-            event.headline = saneData.entity;
-            event.text = saneData.description;
-            timelineData.date.push(event);
-          });
-          timelineData.startDate = startDate;
-          timeline_config.source = {timeline: timelineData};
+          timeline_config.source = snapData;
           updateTimeline();
         });
         
