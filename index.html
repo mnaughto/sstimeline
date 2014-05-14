@@ -95,9 +95,9 @@
               	i++;
               }
             break;
-            case "previousItemn":
+            case "previousItemN":
               while (i< extraArgs.val.n){
-              ss$(".nav-previous").trigger('click');
+              ss$(".nav-previous").click()
             i++;
 				}
             break;
@@ -107,7 +107,7 @@
             break;
             case "previousItem":
               console.log("Next Item");
-              ss$(".nav-prev").trigger('click');
+				ss$(".nav-previous").click()
             break;
             case "zoomIn":
               console.log("Next Item");
